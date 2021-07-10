@@ -9,9 +9,10 @@ public class CustomerCreationCondition implements Condition {
 	@Override
 	public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
 
-		boolean result = false;
+		boolean result = true;
 		
-		 
+
+		
 		return result;
 	}
 
