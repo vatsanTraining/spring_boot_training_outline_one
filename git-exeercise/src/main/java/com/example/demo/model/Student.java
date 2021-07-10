@@ -6,7 +6,7 @@ public class Student {
 
 	
 	int id;
-	String name;
+	String firstName;
 	public Student() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -18,10 +18,10 @@ public class Student {
 		this.id = id;
 	}
 	public String getName() {
-		return name;
+		return firstName;
 	}
 	public void setName(String name) {
-		this.name = name;
+		this.firstName = name;
 	}
 	
 	
