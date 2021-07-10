@@ -23,6 +23,10 @@ public class Student {
 	public void setName(String name) {
 		this.firstName = name;
 	}
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", firstName=" + firstName + "]";
+	}
 	
 	
 }
