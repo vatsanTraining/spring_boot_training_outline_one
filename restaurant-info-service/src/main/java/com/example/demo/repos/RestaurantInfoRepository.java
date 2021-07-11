@@ -17,4 +17,9 @@ public interface RestaurantInfoRepository extends JpaRepository<RestaurantInfo, 
 
 	List<RestaurantInfo> findByserviceArea(String srchString);
 	
+	
+	@Query(value = "update restaurants set openingHours=:value",nativeQuery = true)
+	@Modifying
+	@Transactional
+	int updateOpeningHours(@Param("value") String value);
 }

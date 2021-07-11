@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.entity.RestaurantInfo;
 import com.example.demo.services.RestaurantService;
 
+import io.swagger.v3.oas.annotations.Operation;
 
 import java.util.*;
 @RestController
@@ -26,6 +28,13 @@ public class RestaurantController {
 	private RestaurantService service;
 	
 	
+	@Operation(description = "This Endpoint bring all Registred Restaurant")
+	@GetMapping(path = "/restaurants",produces = "application/json")
+	public List<RestaurantInfo> getAll(){
+		
+		return this.service.getAll();
+	}
+	
 	@GetMapping(path = "/restaurants/{id}",produces = "application/json")
 	public ResponseEntity<RestaurantInfo> findById(@PathVariable("id") int id){
 		
@@ -36,11 +45,7 @@ public class RestaurantController {
 	
 	}
 	
-	@GetMapping(path = "/restaurants/{}",produces = "application/json")
-	public List<RestaurantInfo> getAll(){
-		
-		return this.service.getAll();
-	}
+	
 	@PostMapping(path = "/restaurants",produces = "application/json", consumes = "application/json")
 	public ResponseEntity<RestaurantInfo> add(@RequestBody RestaurantInfo entity) {
 		
@@ -54,11 +59,10 @@ public class RestaurantController {
 		
 		
 		return  ResponseEntity.status(HttpStatus.OK).body(this.service.add(entity));
-		
 	}
 	
 	@DeleteMapping(path = "/restaurants",produces = "application/json")
-	public ResponseEntity<RestaurantInfo> remove(RestaurantInfo entity){
+	public ResponseEntity<RestaurantInfo> remove(@RequestBody RestaurantInfo entity){
 
 		  
 	 
@@ -75,6 +79,23 @@ public class RestaurantController {
 		return this.service.getPages(page, size, sortProp);
 	}
 	
+	
+	@PatchMapping(path = "/restaurants/{timing}")
+	public ResponseEntity<String> updateTiming(@PathVariable("timing") String timing) {
+		
+		int count = this.service.updateTimining(timing);
+		
+		return ResponseEntity.ok().body("Updated Timing of "+count +"Restaurants");
+	}
+	
+
+	@GetMapping(path = "/restaurants/srch/{city}")
+	public List<RestaurantInfo> getByCity(@PathVariable("city") String city) {
+		
+		
+		return this.service.getByLocation(city);
+	}
+
 	
 	
 }

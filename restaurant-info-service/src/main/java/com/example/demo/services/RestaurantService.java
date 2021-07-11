@@ -64,6 +64,16 @@ public class RestaurantService {
                       } else {
                  return null;
                   }        }
+        
+        public List<RestaurantInfo> getByLocation(String location){
+        	
+        	return this.repo.findByserviceArea(location);
+        }
+        
+        public int updateTimining(String newTime) {
+        	
+        	return this.repo.updateOpeningHours(newTime);
+        }
 	}
 
 
