@@ -11,8 +11,10 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.entity.RestaurantInfo;
 
+import java.util.*;
 @Repository
 public interface RestaurantInfoRepository extends JpaRepository<RestaurantInfo, Integer> {
 
+	List<RestaurantInfo> findByserviceArea(String srchString);
 	
 }
