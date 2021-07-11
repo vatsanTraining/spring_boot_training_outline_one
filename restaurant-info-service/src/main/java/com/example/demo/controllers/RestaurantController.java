@@ -3,6 +3,7 @@ package com.example.demo.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -55,6 +56,16 @@ public class RestaurantController {
 		return  ResponseEntity.status(HttpStatus.OK).body(this.service.add(entity));
 		
 	}
+	
+	@DeleteMapping(path = "/restaurants",produces = "application/json")
+	public ResponseEntity<RestaurantInfo> remove(RestaurantInfo entity){
+
+		  
+	 
+	   return ResponseEntity.ok().body(this.service.remove(entity));
+	
+	}
+
 	
 	@GetMapping("/restaurants/pages/{pageNo}/{size}/{sortProp}")
 	public List<RestaurantInfo> getPages(@PathVariable("pageNo") int page , 
