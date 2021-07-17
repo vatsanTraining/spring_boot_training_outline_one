@@ -12,7 +12,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @NoArgsConstructor
-public class ErrrorHandler {
+public class ErrorHandler {
 
 	LocalDateTime time;
 	String message;
